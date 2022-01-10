@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>cat vs dog</title>
+  <link rel = "icon" href = 
+"{% static 'icons8-artificial-intelligence-50.png' %}" 
+        type = "image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.header {
+  padding: 5px;
+  text-align: center;
+  background: #8000FF;
+  color: white;
+  font-size: 10px;
+}
+.body{
+background: #B0B0B0;
+}
+.container {
+  position: absolute;
+  right: 45%;
+  height: 36%;
+  width: 50%;
+  margin: 8%;
+  max-width: 300px;
+  padding: 32px;
+  text-align: black;
+  background-color: white;
+}
+
+.container1 {
+  position: absolute;
+  right: 15%;
+  height: 36%;
+  width: 50%;
+  margin: 8%;
+  max-width: 300px;
+  padding: 32px;
+  text-align: black;
+  background-color: white;
+}
+
+.btn:hover {
+  opacity: 10;
+}
+.btn {
+  font: 17.008px Rubik, sans-serif;
+  background: #008BFF;
+  margin 36px 0px 0px
+  color: #FFFFFF;
+  padding: 13.008px 35.008px;
+]}
+.h1{
+color: black
+}
+.input{
+padding: 36px 40px
+}
+
+.footer{
+  text-align: center;
+  padding: 6px;
+  background-color: DarkSalmon;
+  color: white;
+}
+.cen{
+align: center;
+right: 30%;
+padding: 32px 78px;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Cat Vs Dog classifier</h1>
+  <h3>Select the dog/cat image and press classify button will classify the image as either dog or cat</h3>
+  <h2><a href="http://172.16.3.158:8000/">Go to home</a></h2>
+</div>
+<form class="container" action="cat_vs_dog", method="post", enctype="multipart/form-data">
+{% csrf_token %}
+<h3 class="h1">Select Image</h3>
+<input id="uploadImage" type="file" name="myfile"/>
+<button type = "submit" value = "analyse" class="btn">Classify Image</button>
+</form>
+{% if label %}
+<form class="container1" action="/", method="post"">
+{% csrf_token %}
+<h1>Label: {{ label }}</h1>
+<img src="{{ image }}" alt="ok">
+</form>
+{% endif %}
+</body>
+</html>
